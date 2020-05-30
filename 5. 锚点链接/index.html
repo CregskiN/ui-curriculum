@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../public/reset.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #root {
+            width: 100vw;
+            height: 3000px;
+
+            background-color: #f2f2f2;
+        }
+
+        .to_top {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            position: fixed;
+            right: 10vw;
+            bottom: 10vh;
+
+            width: 80px;
+            height: 50px;
+            border-radius: 10px;;
+            background: linear-gradient(#fce4ec, #03a9f4);
+        }
+
+        .to_top:hover {
+            width: 160px;
+            height: 100px;
+            /* right: calc(10vw - 80px);
+            bottom: calc(10vh - 50px); */
+            transition: .5s ease-in-out;
+        }
+
+    </style>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+        <div id="toTop" class="to_top">
+            返回顶部
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+           var toTopElement = document.getElementById('toTop');
+            toTopElement.addEventListener('click', function() {
+                console.log('toTop');
+                window.scroll(0,0)
+            })
+        }
+
+
+
+    </script>
+</body>
+
+</html>

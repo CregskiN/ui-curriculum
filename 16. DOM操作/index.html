@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        li {
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
+    <title>TodoList</title>
+</head>
+
+<body>
+    <div id="root">
+        <ul id="list">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <button onclick="add()">追加</button>
+        <button onclick="addTo()">在第2前插入</button>
+    </div>
+    <script>
+
+        function getElementById(id) {
+            return document.getElementById(id);
+        }
+
+        function getElementsByTagName(className) {
+            return document.getElementsByTagName(className);
+        }
+
+        function add() {
+            var listElem = getElementById('list');
+            var li = document.createElement('li');
+            li.innerHTML = '追加';
+            listElem.append(li);
+            bindRemove();
+        }
+
+        const rm = (elem) => {
+            return () => {
+                elem.parentNode.removeChild(elem);
+            }
+        }
+
+        function bindRemove() {
+            var lis = getElementsByTagName('li');
+            for (let i = 0; i < lis.length; i++) {
+                lis[i].addEventListener('dblclick', rm(lis[i]));
+            }
+        }
+
+        function addTo() {
+            var lis = getElementsByTagName('li');
+            var li = document.createElement('li');
+            li.innerHTML = '追加';
+            lis[0].append(li);
+            bindRemove();
+        }
+
+        window.onload = function () {
+            bindRemove();
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+@font-face {
+    font-family: 'iconfont';
+    /* project id 1850159 */
+    src: url('http://at.alicdn.com/t/font_1850159_ba4jvsryjrw.eot');
+    src: url('http://at.alicdn.com/t/font_1850159_ba4jvsryjrw.eot?#iefix') format('embedded-opentype'),
+        url('http://at.alicdn.com/t/font_1850159_ba4jvsryjrw.woff2') format('woff2'),
+        url('http://at.alicdn.com/t/font_1850159_ba4jvsryjrw.woff') format('woff'),
+        url('http://at.alicdn.com/t/font_1850159_ba4jvsryjrw.ttf') format('truetype'),
+        url('http://at.alicdn.com/t/font_1850159_ba4jvsryjrw.svg#iconfont') format('svg');
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-weixin:before {
+    content: "\e603";
+}
+
+.icon-umidd17:before {
+    content: "\e604";
+}
+
+.icon-github:before {
+    content: "\e605";
+}
+
+.icon-gengduo:before {
+    content: "\e64e";
+}
+
+.icon-xinlang:before {
+    content: "\e601";
+}
+
+.icon-baidu:before {
+    content: "\e6af";
+}
+
+.icon-tengxun:before {
+    content: "\e629";
+}
+
+.icon-xuanzhongshangcheng:before {
+    content: "\e602";
+}
+
+.icon-lianjie:before {
+    content: "\e611";
+}
+
+.icon-bofang:before {
+    content: "\e606";
+}
+
+.icon-previous:before {
+    content: "\e64d";
+}
+
+.icon-music:before {
+    content: "\e79f";
+}
+
+.icon-next:before {
+    content: "\e61a";
+}
+
+.icon-xunhuan:before {
+    content: "\e607";
+}
+
+.icon-yinlemusic215:before {
+    content: "\e600";
+}
+
+.icon-zantingtingzhi:before {
+    content: "\e62d";
+}

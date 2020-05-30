@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../common/reset.css">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            /* cursor: none; */
+            background: black;
+        }
+
+        #root {
+            width: 100%;
+            height: 100%;
+        }
+
+        .registe-window {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+
+            position: fixed;
+            left: calc(50vw - 250px);
+            top: calc(45vh - 150px);
+
+            width: 500px;
+            height: 300px;
+
+            box-sizing: border-box;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .registe-title {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+
+            width: 100%;
+            height: 60px;
+            padding-left: 30px;
+            box-sizing: border-box;
+
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .form-registrate {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+
+            width: 100%;
+            height: 300px;
+            padding: 10px 10px 0 0;
+
+            box-sizing: border-box;
+        }
+
+        .input_wrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            width: 100%;
+            height: 40px;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        span {
+            display: inline-block;
+            width: 100px;
+
+            font-size: 18px;
+            text-align: center;
+        }
+
+        input {
+            width: 50%;
+            height: 25px;
+            border: 0 solid transparent;
+            border-radius: 3px;
+        }
+
+        input:focus {
+            border: 0 solid #136092;
+        }
+
+        input:hover {
+            box-shadow: 0 0 10px #fff;
+            border: 0;
+            transition: .3s all ease-in-out;
+        }
+
+        .btns {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+
+            width: 50%;
+            height: 60px;
+        }
+
+        button {
+            width: 70px;
+            height: 40px;
+            font-size: 17px;
+
+            margin-top: 5px;
+            border-color: transparent;
+            border-radius: 3px;
+
+            color: #313a42;
+        }
+
+        .btn-reset {
+            background-color: #fece2d;
+        }
+
+        .btn-submit {
+            background-color: #1572b6;
+            color: #fff;
+        }
+
+        .error_lint {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+
+            width: 60%;
+            height: 30px;
+            margin: 3px 0;
+            box-sizing: border-box;
+            border-radius: 3px;
+
+            font-size: 10px;
+
+            color: #fff;
+        }
+
+        .error_lint.is-active {
+            background-color: red;
+        }
+    </style>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <div id="root">
+        <div class="registe-window">
+            <div class="registe-title">注册</div>
+            <span>本页自定义检测替换form原生的submit检测事件</span>
+            <form class="form-registrate" id="registration" action="./success.html" method="GET"
+                onsubmit="return checkAllQuelified()">
+                <div class="input_wrapper">
+                    <span class="input-lint">用户名</span>
+                    <input id="account">
+                </div>
+                <div class="input_wrapper">
+                    <span class="input-lint">密码</span>
+                    <input id="password">
+                </div>
+                <div class="input_wrapper">
+                    <span class="input-lint">确认密码</span>
+                    <input id="password2">
+                </div>
+                <div class="input_wrapper">
+                    <span class="input-lint">邮箱</span>
+                    <input id="email">
+                </div>
+                <div class="btns">
+                    <button class="btn-reset" id="reset" type="reset">重置</button>
+                    <button class="btn-submit" id="submit" type="submit">提交</button>
+                </div>
+
+            </form>
+            <div class="error_lint" id="error_lint">
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function getElementById(id) {
+            return document.getElementById(id);
+        }
+
+        function showLint(lint) {
+            var lintElement = getElementById('error_lint');
+            lintElement.setAttribute('class', lintElement.getAttribute('class') + ' ' + 'is-active');
+            lintElement.innerHTML = 'error: ' + lint;
+        }
+
+        function hideLint() {
+            var lintElement = getElementById('error_lint');
+            lintElement.setAttribute('class', lintElement.getAttribute('class').split(' ')[0]);
+            lintElement.innerHTML = '';
+        }
+
+        function checkAllQuelified() {
+            const res = accountQualified && pswQualified && psw2Qualified && emailQualified;
+            if (!res) {
+                showLint('请再次检查输入是否有误');
+            }
+            return res;
+        }
+
+        // 函数作用域模拟class写法
+        var Utils = (function () {
+            function Utils() { };
+            Utils.prototype.checkEmail = function (email) {
+                if (Object.prototype.toString.call(email) === '[object String]') {
+                    var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+                    return reg.test(email);
+                } else {
+                    console.error('输入的email格式有误')
+                }
+            }
+            return Utils;
+        }());
+
+        var accountQualified = false; // lock
+        var pswQualified = false; // lock
+        var psw2Qualified = false; // lock
+        var emailQualified = false; // lock
+
+        window.onload = function () {
+            var formElement = getElementById('registration');
+            var accountElement = getElementById('account');
+            var pswElement = getElementById('password');
+            var psw2Element = getElementById('password2');
+            var emailElement = getElementById('email');
+            var submitElement = getElementById('submit');
+            var psw = '';
+            var psw2 = '';
+
+            accountElement.addEventListener('change', function () {
+                var account = accountElement.value;
+                var pattern = /[1-9a-zA-Z]/g;
+                var res = account.match(pattern);
+                if (res.length !== account.length) {
+                    showLint('用户名只允许使用数字、字母');
+                } else {
+                    hideLint();
+                    accountQualified = true;
+                }
+            })
+
+            pswElement.addEventListener('change', function () {
+                psw = pswElement.value;
+                if (psw && psw2) {
+                    var pattern = /[1-9a-zA-Z]/g;
+                    var res = psw.match(pattern);
+                    if (psw.length !== res.length) {
+                        showLint('用户名只允许使用数字、字母');
+                        return;
+                    }
+                    if (psw !== psw2) {
+                        showLint('您两次输入的密码不同');
+                        return;
+                    }
+                    hideLint();
+                    psw2Qualified = true;
+                    pswQualified = true;
+                }
+            });
+
+            psw2Element.addEventListener('change', function () {
+                psw2 = psw2Element.value;
+                if (psw && psw2) {
+                    var pattern = /[1-9a-zA-Z]/g;
+                    var res = psw2.match(pattern);
+                    if (psw2.length !== res.length) {
+                        showLint('用户名只允许使用数字、字母');
+                        return;
+                    }
+                    if (psw !== psw2) {
+                        showLint('您两次输入的密码不同');
+                        return;
+                    }
+                    hideLint();
+                    pswQualified = true;
+                    psw2Qualified = true;
+                }
+            });
+
+            emailElement.addEventListener('change', function () {
+                var email = emailElement.value;
+                try {
+                    var utils = new Utils();
+                    if (utils.checkEmail(email)) {
+                        emailQualified = true;
+                    } else {
+                        throw new Error('邮箱格式有误');
+                    }
+                } catch (err) {
+                    showLint('请检查邮箱格式');
+                    console.log(err);
+                }
+            });
+
+        }
+
+
+
+    </script>
+    <script src="../common/canvas.js"></script>
+
+</body>
+
+</html>

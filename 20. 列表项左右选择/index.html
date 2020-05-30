@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #root {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #middle {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            margin: 0 20px;
+
+            height: 100px;
+        }
+
+        #left,
+        #right {
+            width: 100px;
+            height: 200px;
+        }
+
+        select {
+            border: none;
+            box-shadow: 0 0 10px #2e2d2d;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <label>水果</label>
+        <select id="left" multiple onchange="leftChange(event)">
+            <option value="0">草莓</option>
+            <option value="1">西瓜</option>
+            <option value="2">香蕉</option>
+            <option value="3">大象</option>
+            <option value="4">蜡笔小新</option>
+        </select>
+        <div id="middle">
+            <button onclick="toLeft()">⬅️</button>
+            <button onclick="toRight()">➡️</button>
+        </div>
+        <select id="right" multiple onchange="rightChange(event)">
+
+        </select>
+        <div>非水果</div>
+    </div>
+
+
+    <script>
+        let left = null;
+        let right = null;
+        const v = ['草莓', '西瓜', '香蕉', '大象', '蜡笔小新'];
+
+        function leftChange(e) {
+            const value = e.target.value;
+            left = value;
+            console.log(left);
+        }
+
+        function rightChange() {
+            const value = e.target.value;
+            right = value;
+            console.log(right)
+        }
+
+        function toLeft() {
+            var leftCollection = document.getElementById('left');
+            var rightCollection = document.getElementById('right');
+
+            for (let i = rightCollection.length - 1; i >= 0; i--) {
+                if (rightCollection[i].value === left) {
+                    leftCollection.appendChild(rightCollection[i]);
+                    break;
+                }
+            }
+        }
+
+        function toRight() {
+            var leftCollection = document.getElementById('left');
+            var rightCollection = document.getElementById('right');
+
+            for (let i = leftCollection.length - 1; i >= 0; i--) {
+                if (leftCollection[i].value === left) {
+                    rightCollection.appendChild(leftCollection[i]);
+                    break;
+                }
+            }
+        }
+
+
+
+
+        window.onload = function () {
+            var leftCollection = document.getElementById('left');
+            var rightCollection = document.getElementById('right');
+
+
+        }
+
+    </script>
+</body>
+
+</html>
