@@ -4,40 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../public/reset.css">
+    <link rel="stylesheet" type="text/css" href="../common/normalize.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
+        #root {
+            padding: 0 auto;
         }
 
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .root {
-            background-color: #f2f2f2;
-        }
-
-        .problemA,
-        .problemB,
-        .problemC {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            width: 300px;
-            margin-bottom: 50px;
-            ;
-        }
-
-        .problemB {
-            width: 268px;
-            height: 201px;
-            background: url(https://ae01.alicdn.com/kf/H55fe0279d3454f9dbdf8c05c2d711dfbY.jpeg) no-repeat;
-        }
     </style>
 
     <title>Document</title>
@@ -45,33 +17,13 @@
 
 <body>
     <div id="root">
-        <div class="problemA">
-            <h1>显示图片及设置大小</h1>
-            <input type="range" min="0" max="1000" value="300" onchange="changeImageWidth(this)">
-            <img id="img" src="https://ae01.alicdn.com/kf/H4bb3a38195024539bd53e0e0fbfb6d14R.png">
-        </div>
-        <div class="problemB">
-            <h1>图片作为页面背景</h1>
-
-        </div>
-        <div class="problemC">
-            <h1>图片超链接</h1>
-            <a href="http://www.baidu.com" rel="noopener norferrer" target="_blank">
-                <img src="https://ae01.alicdn.com/kf/Hb9cd0b05032442eea9de0744c0513375d.png">
-            </a>
-        </div>
+        <a href="http://www.baidu.com" target="_blank" rel="noopener">超链接 - 百度</a><span>&emsp;新窗口打开 + 禁用opener共享</span>
+        </br>
+        <a href="../3. 图片的应用/index.html">站内跳转 - 3. 图片的应用</a>
     </div>
 
     <script>
-        window.onload = function () {
-            elements = document.getElementsByTagName('*');
-        }
 
-        function changeImageWidth(e) {
-            var newWidth = e.value;
-            var image = document.getElementById('img')
-            image.setAttribute('width', newWidth)
-        }
     </script>
 </body>
 

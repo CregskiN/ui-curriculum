@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../common/reset.css">
+    <link rel="stylesheet" type="text/css" href="../common/normalize.css">
     <link rel="stylesheet" type="text/css" href="../common/icon.css">
     <style>
         body {
@@ -12,8 +12,6 @@
             overflow: hidden;
             width: 100%;
             height: 100%;
-            /* cursor: none; */
-            background: black;
             z-index: 0;
         }
 
@@ -38,7 +36,7 @@
             align-items: center;
 
             width: 700px;
-            height: 500px;
+            height: 700px;
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
         }
@@ -101,12 +99,12 @@
 </head>
 
 <body>
-    <canvas id="canvas"></canvas>
     <div id="root">
         <div class="window">
-            <audio class="music-player" id="player" src="https://wx-interchange.oss.jellyfishmix.com/lu-BqqY3cWIfeL6OOWzJR7d7KVpi"></audio>
-            <img class="player-cover" id="player-cover"
-                src="https://tse4-mm.cn.bing.net/th/id/OIP.dyAS4tye_ommPk6TCyfnmwHaEo?w=183&h=114&c=7&o=5&dpr=2&pid=1.7">
+            <span>使用 gitee 托管 mp3 静态资源文件</span>
+            <audio class="music-player" id="player" src="http://cregskin.gitee.io/cregskin-static/ljj-1.mp3"></audio>
+            <img class="player-cover" id="player-cover" width="400" height=“350”
+                src="http://cregskin.gitee.io/cregskin-static/ljj-pic.jpg">
             <input class="player-range" id="player-bar" type="range" min="0" value="0" step="1">
             <div class="music-name" id="music-name"></div>
             <div class="player-console">
@@ -119,7 +117,7 @@
     </div>
 
     <script src="./index.js"></script>
-    <script src="../common/canvas.js"></script>
+    
 </body>
 
 </html>

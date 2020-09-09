@@ -27,10 +27,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
 
-            width: 300px;
+            
             margin-bottom: 50px;
-            ;
+            
         }
 
         .problemB {
@@ -46,13 +47,13 @@
 <body>
     <div id="root">
         <div class="problemA">
-            <h1>显示图片及设置大小</h1>
-            <input type="range" min="0" max="1000" value="300" onchange="changeImageWidth(this)">
-            <img id="img" src="https://ae01.alicdn.com/kf/H4bb3a38195024539bd53e0e0fbfb6d14R.png">
+            <h1>显示图片及设置大小 - 已使用 throttle 优化</h1>
+            <input id="input" type="range" min="0" max="1000" value="300">
+            <span id="tip">300</span>
+            <img id="img" width="300" src="https://pic1.zhimg.com/50/v2-d4dacf39d7ca7d967094d11eb8ba35e3_hd.jpg">
         </div>
         <div class="problemB">
             <h1>图片作为页面背景</h1>
-
         </div>
         <div class="problemC">
             <h1>图片超链接</h1>
@@ -63,14 +64,31 @@
     </div>
 
     <script>
-        window.onload = function () {
-            elements = document.getElementsByTagName('*');
+        window.onload = () => {
+            const inputElem = document.getElementById('input');
+            const imgElem = document.getElementById('img');
+            const tipElem = document.getElementById('tip');
+
+            inputElem.addEventListener('input', throttle((e) => {
+                const newWidth = e.target.value;
+                imgElem.setAttribute('width', newWidth);
+                tip.innerHTML = newWidth;
+            }, 16.7))
         }
 
-        function changeImageWidth(e) {
-            var newWidth = e.value;
-            var image = document.getElementById('img')
-            image.setAttribute('width', newWidth)
+
+        function throttle(fn, delay = 200) {
+            let timer = null;
+            return function (...args) {
+                if (timer) {
+                    return;
+                } else {
+                    timer = setTimeout(() => {
+                        fn.apply(this, args);
+                        timer = null;
+                    }, delay);
+                }
+            }
         }
     </script>
 </body>

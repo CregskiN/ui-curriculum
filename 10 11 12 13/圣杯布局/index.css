@@ -1,9 +1,6 @@
-body {}
-
 header,
 footer {
     width: 100%;
-    min-width: 1000px;
 }
 
 
@@ -13,7 +10,7 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-left: 20px;
     font-size: 18px;
     line-height: 20px;
