@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            background-color: #f5f6f7;
+        }
+    </style>
+    <title>表单</title>
+</head>
+
+<body>
+    <div class="root">
+        <form>
+            <div>
+                <label>你是？</label>
+                <input placeholder="请输入姓名" required>
+            </div>
+            <div>
+                <label>你的性别为？</label>
+                <input name="gender" type="radio" value="男" checked><label>男</label>
+                <input name="gender" type="radio" value="女"><label>女</label>
+            </div>
+            <div>
+                <label>你的爱好是？</label>
+                <input type="checkbox" value="游泳"><label>游泳</label>
+                <input type="checkbox" value="健身"><label>健身</label>
+                <input type="checkbox" value="下棋"><label>下棋</label>
+                <input type="checkbox" value="跑步"><label>跑步</label>
+                <input type="checkbox" value="编程"><label>编程</label>
+            </div>
+            <div>
+                <label>你的身份是？</label>
+                <select required>
+                    <option value="student">学生</option>
+                    <option value="teacher">教师</option>
+                    <option value="engineer">工程师</option>
+                    <option value="openSourceEnthusiasts">开源爱好者</option>
+                </select>
+            </div>
+            <div>
+                <label>你最近吃了什么水果？</label>
+                <select multiple required>
+                    <option value="apple">苹果</option>
+                    <option value="orange">橘子</option>
+                    <option value="banana">香蕉</option>
+                </select>
+                <label>(win用户按住ctrl多选，mac用户按住command多选)</label>
+            </div>
+            <button type="reset">重置</button>
+            <button type="submit">提交</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

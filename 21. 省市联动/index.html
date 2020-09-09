@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>省市联动</title>
+</head>
+
+<body>
+    <div id="root">
+        <label>请选择省份</label>
+        <select id="province">
+            <option value="hebei" selected>河北</option>
+            <option value="beijing">北京</option>
+        </select>
+        </br>
+        <label>请选择市</label>
+        <select id="city">
+
+        </select>
+    </div>
+
+    <script>
+        var city = {
+            'beijing': ['大兴区', '海淀区', '顺义区', '朝阳区'],
+            'hebei': ['邢台市', '廊坊市', '唐山市', '承德市', '衡水市', '张家口市']
+        }
+
+        function addCities(newProvince, cityElement) {
+            var cities = city[newProvince];
+            for (var i = 0; i < cities.length; i++) {
+                var op = document.createElement('option');
+                op.innerHTML = cities[i];
+                op.setAttribute('class', 'city');
+                cityElement.append(op);
+            }
+        }
+
+        function removeCities() {
+            var cityNodes = document.getElementsByClassName('city');
+            for (var i = cityNodes.length - 1; i >= 0; i--) {
+                cityNodes[i].parentNode.removeChild(cityNodes[i]);
+
+            }
+        }
+
+
+        window.onload = function () {
+            var root = document.getElementById('root');
+            var provinceElement = document.getElementById('province');
+            var cityElement = document.getElementById('city');
+
+            addCities(provinceElement.value, cityElement);
+
+            provinceElement.addEventListener('change', function (e) {
+                removeCities();
+                addCities(e.target.value, cityElement);
+            });
+
+
+
+
+
+        }
+    </script>
+</body>
+
+</html>

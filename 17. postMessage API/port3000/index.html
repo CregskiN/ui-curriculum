@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h2>
+        本页为展示HTML5 API - PostMessage 的父子窗口应用场景，请按如下操作
+    </h2>
+    <p>1. 安装node.js</p>
+    <p>2. 执行 cd 17. postMessage API</p>
+    <p>3. 执行 npm install</p>
+    <p>4. cd port3000</p>
+    <p>5. node app.js</p>
+    <p>6. cd ../port3001</p>
+    <p>8. node app.js</p>
+    <p>浏览器访问http://localhost:3000/index.html</p>
+    <p>点击打开新窗口，在父窗口输入的值，点击确定后，将同步到子窗口。 子窗口同理</p>
+
+    <div id="open" style="width:200px;height: 100px;background-color:aqua;">打开子窗口</div>
+
+    <div id="postChild" style="width:200px;height: 100px;background-color:bisque;">传输：hello world! 至子窗口</div>
+
+
+    <div id="form">
+        <input id="account" placeholder="账号" value="" type="text" />
+        <input placeholder="密码" value="" type="text" />
+        <button onclick="formSubmit()">提交</button>
+    </div>
+
+
+
+    <script>
+
+        document.cookie = 'name=cregskin'; // 设置cookie
+        let child = null;
+
+        const openElem = document.getElementById('open');
+        openElem.addEventListener('click', function () {
+            child = window.open('http://localhost:3001/child.html', 'title');
+        })
+
+        const postChildElem = document.getElementById('postChild');
+        postChildElem.addEventListener('click', function () {
+            child.postMessage('hello world!', 'http://localhost:3001/child.html');
+        })
+
+        function formSubmit(event) {
+            var formElem = document.getElementsByTagName('input');
+            var account = formElem[0].value;
+            var password = formElem[1].value;
+            child.postMessage({
+                account,
+                password,
+                type: 'form'
+            }, 'http://localhost:3001/child.html');
+        }
+
+        window.addEventListener('message', function (msg) {
+            if (msg.data.type === 'form') {
+                var inputs = document.getElementsByTagName('input');
+                inputs[0].value = msg.data.account;
+                inputs[1].value = msg.data.password;
+            }
+        })
+
+    </script>
+</body>
+
+</html>
